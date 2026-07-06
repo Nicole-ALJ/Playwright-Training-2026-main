@@ -1,10 +1,8 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '../fixtures/test';
+import { users } from '../data/users';
 
-test('login with env credentials', async ({ page }) => {
-  await page.goto(process.env.BASE_URL || 'https://www.saucedemo.com/');
-  await page.locator('[data-test="username"]').fill(process.env.STANDARD_USER || 'standard_user');
-  await page.locator('[data-test="password"]').fill(process.env.SAUCEDEMO_PASSWORD || 'secret_sauce');
-  await page.locator('[data-test="login-button"]').click();
-
-  await expect(page).toHaveURL(/inventory/);
+test('login with env credentials', async ({ loginPage }) => {
+  await loginPage.open();
+  await loginPage.login(users.standard.username, users.standard.password);
+  await loginPage.expectInventoryPage();
 });
