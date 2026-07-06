@@ -1,7 +1,12 @@
 import { expect, type Page } from '@playwright/test';
+import { HeaderComponent } from './components/header';
 
 export class InventoryPage {
-  constructor(private page: Page) {}
+  readonly header: HeaderComponent;
+
+  constructor(private page: Page) {
+    this.header = new HeaderComponent(page);
+  }
 
   async addFirstProductToCart() {
     await this.page.locator('.inventory_item_name').first().textContent();
@@ -9,7 +14,7 @@ export class InventoryPage {
   }
 
   async openCart() {
-    await this.page.locator('[data-test="shopping-cart-link"]').click();
+    await this.header.openCart();
   }
 
   async expectCartBadge(value: string) {
