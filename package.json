@@ -1,0 +1,24 @@
+{
+  "name": "playwright-training-2026",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nicole-ALJ/Playwright-Training-2026.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Nicole-ALJ/Playwright-Training-2026/issues"
+  },
+  "homepage": "https://github.com/Nicole-ALJ/Playwright-Training-2026#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.61.1",
+    "@types/node": "^25.9.4",
+    "dotenv": "^17.4.2"
+  }
+}
