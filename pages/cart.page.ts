@@ -4,8 +4,12 @@ import { HeaderComponent } from './components/header';
 export class CartPage {
   readonly header: HeaderComponent;
 
-  constructor(private page: Page) {
+  constructor(public page: Page) {
     this.header = new HeaderComponent(page);
+  }
+
+  async expectCartPage() {
+    await expect(this.page).toHaveURL(/cart\.html/);
   }
 
   async expectProductInCart(productName: string) {
@@ -13,6 +17,6 @@ export class CartPage {
   }
 
   async checkout() {
-    await this.page.locator('[data-test="checkout"]').click();
+    await this.page.getByTestId('checkout').click();
   }
 }

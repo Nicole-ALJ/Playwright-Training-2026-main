@@ -1,19 +1,23 @@
 import { expect, type Page } from '@playwright/test';
 
 export class LoginPage {
-  constructor(private page: Page) {}
+  constructor(public page: Page) {}
 
   async open() {
     await this.page.goto(process.env.BASE_URL || 'https://www.saucedemo.com/');
   }
 
   async login(username: string, password: string) {
-    await this.page.locator('[data-test="username"]').fill(username);
-    await this.page.locator('[data-test="password"]').fill(password);
-    await this.page.locator('[data-test="login-button"]').click();
+    await this.page.getByTestId('username').fill(username);
+    await this.page.getByTestId('password').fill(password);
+    await this.page.getByTestId('login-button').click();
   }
 
   async expectInventoryPage() {
     await expect(this.page).toHaveURL(/inventory/);
+  }
+
+  async expectErrorMessage(message: string) {
+    await expect(this.page.getByTestId('error')).toContainText(message);
   }
 }

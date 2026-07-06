@@ -4,13 +4,16 @@ import { HeaderComponent } from './components/header';
 export class InventoryPage {
   readonly header: HeaderComponent;
 
-  constructor(private page: Page) {
+  constructor(public page: Page) {
     this.header = new HeaderComponent(page);
   }
 
+  async getFirstProductName() {
+    return (await this.page.locator('.inventory_item_name').first().textContent())?.trim() || '';
+  }
+
   async addFirstProductToCart() {
-    await this.page.locator('.inventory_item_name').first().textContent();
-    await this.page.locator('[data-test="add-to-cart-sauce-labs-backpack"]').click();
+    await this.page.getByTestId('add-to-cart-sauce-labs-backpack').click();
   }
 
   async openCart() {
@@ -18,6 +21,6 @@ export class InventoryPage {
   }
 
   async expectCartBadge(value: string) {
-    await expect(this.page.locator('[data-test="shopping-cart-badge"]')).toHaveText(value);
+    await expect(this.page.getByTestId('shopping-cart-badge')).toHaveText(value);
   }
 }

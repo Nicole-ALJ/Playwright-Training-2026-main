@@ -4,6 +4,6 @@ export class HeaderComponent {
   constructor(private page: Page) {}
 
   async openCart() {
-    await this.page.locator('[data-test="shopping-cart-link"]').click();
+    await this.page.getByTestId('shopping-cart-link').click();
   }
 }
