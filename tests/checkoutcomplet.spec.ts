@@ -1,7 +1,7 @@
 import { test } from '../fixtures/test';
 import { users } from '../data/users';
 
-test('adds a product to the cart', async ({ loginPage, inventoryPage, cartPage, checkoutPage }) => {
+test('completes checkout after adding a product to the cart', async ({ loginPage, inventoryPage, cartPage, checkoutPage }) => {
   await loginPage.open();
   await loginPage.login(users.standard.username, users.standard.password);
   await loginPage.expectInventoryPage();
