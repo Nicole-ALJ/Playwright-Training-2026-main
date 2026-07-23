@@ -1,0 +1,14 @@
+services:
+  playwright:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /app
+    env_file:
+      - .env
+    environment:
+      CI: "1"
+    command: npx playwright test
+    volumes:
+      - ./playwright-report:/app/playwright-report
+      - ./test-results:/app/test-results

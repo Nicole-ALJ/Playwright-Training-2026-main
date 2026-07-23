@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "playwright test"
+    "test": "playwright test",
+    "test:docker:build": "docker compose build playwright",
+    "test:docker": "docker compose run --rm playwright"
   },
   "repository": {
     "type": "git",
