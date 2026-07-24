@@ -1,12 +1,19 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "lib": ["ES2020"],
+    "noEmit": true,
     "skipLibCheck": true,
     "types": ["node", "@playwright/test"]
   },
-  "include": ["tests", "playwright.config.ts"],
-  "references": [{ "path": "./tsconfig.app.json" }]
+  "include": [
+    "playwright.config.ts",
+    "tests/**/*.ts",
+    "pages/**/*.ts",
+    "fixtures/**/*.ts",
+    "data/**/*.ts"
+  ],
+  "exclude": ["node_modules", "playwright-report", "test-results"]
 }

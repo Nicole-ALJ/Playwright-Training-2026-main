@@ -11,4 +11,8 @@ export const users = {
     username: 'problem_user',
     password: process.env.SAUCEDEMO_PASSWORD || 'secret_sauce',
   },
+  invalid: {
+    username: process.env.STANDARD_USER || 'standard_user',
+    password: process.env.SAUCEDEMO_PASSWORD_INVALID || 'secret_sauce_invalid',
+  },
 };

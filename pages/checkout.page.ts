@@ -15,6 +15,6 @@ export class CheckoutPage {
   }
 
   async expectCheckoutCompleted() {
-    await expect(this.page.getByTestId('complete-header')).toBeVisible();
+    await expect(this.page.getByTestId('complete-header')).toHaveText('Thank you for your order!');
   }
 }

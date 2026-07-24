@@ -1,12 +1,7 @@
 import { expect, type Page } from '@playwright/test';
-import { HeaderComponent } from './components/header';
 
 export class CartPage {
-  readonly header: HeaderComponent;
-
-  constructor(public page: Page) {
-    this.header = new HeaderComponent(page);
-  }
+  constructor(public page: Page) {}
 
   async expectCartPage() {
     await expect(this.page).toHaveURL(/cart\.html/);
