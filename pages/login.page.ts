@@ -36,8 +36,11 @@ export class LoginPage {
       .or(this.page.locator('#logout_sidebar_link'))
       .or(this.page.getByTestId('logout'))
       .first();
-    await logoutButton.waitFor({ state: 'visible' });
-    await logoutButton.click();
+
+    // Dispatch the click directly — sidebar items animate in individually and
+    // may still be mid-transform when Playwright tries to click them.
+    await logoutButton.waitFor({ state: 'attached' });
+    await logoutButton.dispatchEvent('click');
   }
 
   async expectLoginPage() {
