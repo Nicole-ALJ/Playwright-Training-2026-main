@@ -1,4 +1,4 @@
-import { expect, type Page } from '@playwright/test';
+﻿import { expect, type Page } from '@playwright/test';
 
 export class CartPage {
   constructor(public page: Page) {}
@@ -13,5 +13,13 @@ export class CartPage {
 
   async checkout() {
     await this.page.getByTestId('checkout').click();
+  }
+
+  async removeProductFromCart(productName: string) {
+    await this.page.locator('.cart_item').filter({ hasText: productName }).getByRole('button', { name: 'Remove' }).click();
+  }
+
+  async expectCartEmpty() {
+    await expect(this.page.locator('.cart_item')).toHaveCount(0);
   }
 }
