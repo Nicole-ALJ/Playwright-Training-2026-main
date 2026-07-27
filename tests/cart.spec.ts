@@ -31,17 +31,11 @@ test('adds a product to the cart', async ({ loginPage, inventoryPage, cartPage }
     await cartPage.expectProductInCart(secondProductName);
     await cartPage.expectProductInCart(thirdProductName);
   });
-
-  await test.step('Sort products Z to A', async () => {
-    await inventoryPage.open();
-    await inventoryPage.sortProducts('za');
-    const productsAfterSort = await inventoryPage.getAllProductNames();
-    
-    // Verify products are sorted Z to A (reverse alphabetically)
-    const isSorted = productsAfterSort.every((product, i) => {
-      if (i === 0) return true;
-      return product <= productsAfterSort[i - 1];
-    });
-    expect(isSorted).toBeTruthy();
+    await test.step('Remove all products from cart', async () => {
+    await inventoryPage.openCart();
+    await cartPage.removeProductFromCart(firstProductName);
+    await cartPage.removeProductFromCart(secondProductName);
+    await cartPage.removeProductFromCart(thirdProductName);
+    await cartPage.expectCartEmpty();
   });
-});
+  });
