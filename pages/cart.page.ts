@@ -8,7 +8,7 @@ export class CartPage {
   }
 
   async expectProductInCart(productName: string) {
-    await expect(this.page.locator('.inventory_item_name')).toContainText(productName);
+    await expect(this.page.locator('.inventory_item_name', { hasText: productName })).toBeVisible();
   }
 
   async checkout() {
