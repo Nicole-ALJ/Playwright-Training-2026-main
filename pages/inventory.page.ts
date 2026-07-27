@@ -8,6 +8,10 @@ export class InventoryPage {
     this.header = new HeaderComponent(page);
   }
 
+  async open() {
+    await this.page.goto('/inventory.html');
+  }
+
   async getFirstProductName() {
     return (await this.page.locator('.inventory_item_name').first().textContent())?.trim() || '';
   }
@@ -30,5 +34,24 @@ export class InventoryPage {
 
   async expectCartBadge(value: string) {
     await expect(this.page.getByTestId('shopping-cart-badge')).toHaveText(value);
+  }
+
+  async sortProducts(option: string) {
+    await this.page.locator('[data-test="product-sort-container"]').selectOption(option);
+  }
+
+  async getAllProductNames() {
+    const elements = await this.page.locator('.inventory_item_name').all();
+    const names = [];
+    for (const element of elements) {
+      const text = (await element.textContent())?.trim();
+      if (text) names.push(text);
+    }
+    return names;
+  }
+
+  async expectProductsInOrder(expectedOrder: string[]) {
+    const actualOrder = await this.getAllProductNames();
+    expect(actualOrder).toEqual(expectedOrder);
   }
 }
