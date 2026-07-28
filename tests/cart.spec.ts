@@ -12,7 +12,7 @@ test('adds a product to the cart', async ({ loginPage, inventoryPage, cartPage }
   let secondProductName = '';
   let thirdProductName = '';
 
-  await test.step('Add two products to cart', async () => {
+  await test.step('Add more than 1 product to cart', async () => {
     firstProductName = await inventoryPage.getProductName(0);
     secondProductName = await inventoryPage.getProductName(1);
     thirdProductName = await inventoryPage.getProductName(2);
