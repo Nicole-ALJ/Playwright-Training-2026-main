@@ -10,8 +10,20 @@ export class CheckoutPage {
     await this.page.getByTestId('continue').click();
   }
 
+  async fillField(testId: string, value: string) {
+    await this.page.getByTestId(testId).fill(value, { force: true });
+  }
+
   async finishCheckout() {
     await this.page.getByTestId('finish').click();
+  }
+
+  async submitWithoutFilling() {
+    await this.page.getByTestId('continue').click();
+  }
+
+  async expectErrorMessage(message: string) {
+    await expect(this.page.locator('[data-test="error"]')).toContainText(message);
   }
 
   async expectCheckoutCompleted() {
